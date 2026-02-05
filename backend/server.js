@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use("api/products", productRoutes);
+app.use("/api/products", productRoutes);
 
 app.listen(process.env.PORT, () => {
     connectDB();

@@ -13,7 +13,6 @@ export const getProductById = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
     try {
-        console.log('sdaf')
         const products = await Product.find();
         res.status(200).json({success: true, products});
     } catch (error) {
