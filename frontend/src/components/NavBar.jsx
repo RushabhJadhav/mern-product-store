@@ -1,24 +1,29 @@
-import { Button, Container, Flex, HStack, Text } from "@chakra-ui/react";
+import { Button, Container, Flex, HStack, Text, useColorMode, Icon } from "@chakra-ui/react";
 import { Link } from "react-router";
-import { ShoppingCartIcon, SquarePlusIcon } from 'lucide-react';
+import { MoonIcon, ShoppingCartIcon, SquarePlusIcon, SunIcon } from 'lucide-react';
 
 const NavBar = () => {
-  return (
-    <Container maxW={"1140px"} px={4 }>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"} flexDir={{base: "column", sm: "row"}}>
-            <Text fontSize={{base: "22", sm: "28"}} fontWeight={"bold"} textTransform={"uppercase"} alignItems={"center"} bgGradient={"linear(to-r, cyan.400, blue.500)"} bgClip={"text"}>
-                <Link to={"/"}>Product Store <ShoppingCartIcon /></Link>
-            </Text>
-            <HStack spacing={2} alignItems={"center"}>
-                <Link to={"/create"}>
-                    <Button>
-                        <SquarePlusIcon fontSize={20} />
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    return (
+        <Container maxW={"1140px"} px={4}>
+            <Flex h={16} alignItems={"center"} justifyContent={"space-between"} flexDir={{ base: "column", sm: "row" }}>
+                <Text fontSize={{ base: "22", sm: "28" }} fontWeight={"bold"} textTransform={"uppercase"} alignItems={"center"} bgGradient={"linear(to-r, cyan.400, blue.500)"} bgClip={"text"}>
+                    <Link to={"/"}>Product Store <Icon as={ShoppingCartIcon} color="blue.400" /></Link>
+                </Text>
+                <HStack spacing={2} alignItems={"center"}>
+                    <Link to={"/create"}>
+                        <Button>
+                            <SquarePlusIcon fontSize={20} />
+                        </Button>
+                    </Link>
+                    <Button onClick={toggleColorMode}>
+                        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                     </Button>
-                </Link>
-            </HStack>
-        </Flex>
-    </Container>
-  )
+                </HStack>
+            </Flex>
+        </Container>
+    )
 };
 
 export default NavBar;
